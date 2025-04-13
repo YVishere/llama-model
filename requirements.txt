@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+ollama
+requests
+trafilatura
+bs4
+colorama
+pydantic
