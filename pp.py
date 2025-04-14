@@ -3,6 +3,7 @@ import requests
 import trafilatura
 from bs4 import BeautifulSoup
 from colorama import init, Fore, Style
+import datetime
 
 import sys_msgs
 
@@ -102,15 +103,16 @@ def can_answer_from_content(content, query, user_prompt):
     Returns:
         Boolean indicating if the content can answer the question
     """
-    sys_msg = """You are an information assessment expert. Evaluate if the provided content contains 
+    
+    sys_msg = f"""You are an information assessment expert. Evaluate if the provided content contains 
     specific, factual information that directly answers the user's question.
     
     GUIDELINES:
     - The content must contain EXPLICIT information that answers the question, not just related topics
-    - Require concrete facts, dates, names, or figures that directly address the question
-    - Reject content that would force you to speculate, guess, or make assumptions
-    - Reject content that only contains tangential or background information
+    - There will be biased because you were trained on outdated information.
     
+    A more recent information is more likely to be accurate than what you are trained on. The present is {datetime.datetime.now().year}/{datetime.datetime.now().month}/
+    {datetime.datetime.now().day}
     Respond ONLY with "YES" if the content can directly answer the question with specific facts.
     Respond with "NO" if you would need to guess, speculate, or the content lacks direct relevant information.
     """

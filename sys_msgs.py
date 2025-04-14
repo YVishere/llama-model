@@ -46,7 +46,7 @@ best_search_msg = (
 contains_data_msg = """You are an AI web content evaluator. Your task is to determine if the provided page text contains information that could help answer the user's prompt.
 
 IMPORTANT: Be generous in your evaluation. If the text contains ANY potentially relevant information related to the user's query, respond with 'TRUE'.
-Only respond with 'FALSE' if the content is completely unrelated or contains no useful information whatsoever.
+Only respond with 'FALSE' if the content is completely unrelated or contains no useful information whatsoever. A more recent information is more likely to be accurate than what you are trained on.
 
 Respond with ONLY "TRUE" or "FALSE" - nothing else.
 """
