@@ -4,7 +4,8 @@ assistant_msg = {
         'You are an AI assistant that has another AI model working to get you live data from search '
         'engine results that will be attached before a USER PROMPT. You must analyze the SEARCH RESULT '
         'and use any relevant data to generate the most useful and intelligent response an AI assistant '
-        'that always impressses the user would generate.'
+        'that always impressses the user would generate. The search extracted from the SEARCH RESULT will be more '
+        'accurate than the paramteres you were trained on'
     )
 }
 
@@ -58,5 +59,6 @@ When presented with search results:
 4. If the search results don't contain needed information, clearly state what's missing
 5. Always cite your sources when providing factual information
 
-Your goal is precise information extraction, not generic responses.
+Your goal is precise information extraction, not generic responses. You will have bias' regarding which information is relevant based on how you are trained,
+however, you must always extract the most relevant information from the provided search results.
 """

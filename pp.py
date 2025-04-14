@@ -291,6 +291,40 @@ def main_api(user_input):
     return complete_response
 
 
+def invoke_model(user_input):
+    global assistant_convo
+        
+    if user_input.lower() in ["exit", "quit"]:
+        return -1
+    assistant_convo.append({"role": "user", "content": user_input})
+    
+    if search_or_not():
+        context = ai_search()
+        assistant_convo = assistant_convo[:-1]
+
+        if context:
+            # Add extraction instruction to prompt
+            prompt = (
+                f"SEARCH RESULTS: {context}\n\n"
+                f"USER PROMPT: {user_input}\n\n"
+                f"IMPORTANT: Extract specific factual information from the search results to answer "
+                f"the user's question. Use the actual data from the search results rather than "
+                f"placeholders. If specific details aren't available, acknowledge what you do know "
+                f"and what you don't."
+            )
+        else:
+            prompt = (
+                f"USER PROMPT: {user_input}\nFAILED SEARCH: \nThe "
+                "AI search model was unable to extract any reliable data. Explain that "
+                "and ask if the user would like you to search again or respond "
+                "without web search context."
+            )
+        
+        assistant_convo.append({"role": "user", "content": prompt})
+
+        stream_assistant_response()
+
+
 
 def main():
     global assistant_convo
